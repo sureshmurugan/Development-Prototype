@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>U.S. FDA-Food and Drug Administartion</title>
+
+    {% block stylesheets %}
+    <!-- Bootstrap Core CSS -->
+    <link href="{{asset('web/bundles/fda/css/bootstrap.css')}}" rel="stylesheet" />
+    {% endblock %}
+    <!-- Custom CSS -->
+    <link href="{{asset('web/bundles/fda/css/fda.css')}}" rel="stylesheet" />
+    <link href="{{asset('web/bundles/fda/css/login.css')}}" rel="stylesheet" />
+
+</head>
+
+
+
+<body>
+<div class="container">
+    	<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-12">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div id="login-form"  style="display: block;">
+									<div class="form-group">
+										<input type="text" name="username" id="loginname" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="loginpassword" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
+									</div>
+									<div class="form-group">
+                                        <span id="alert-login-span" style="display:none"><p id="alert-login-txt" style="text-align:center;color:red"></p></span>
+                                   	</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" type="text/javascript"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="{{asset('web/bundles/fda/js/bootstrap.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('web/bundles/fda/js/Chart.js')}}" type="text/javascript"></script>
+<script src="{{asset('web/bundles/fda/script/lib/path.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('web/bundles/fda/script/lib/login.js')}}" type="text/javascript"></script>
+<script src="{{asset('web/bundles/fda/script/services/fda.datasource-service.js')}}" type="text/javascript"></script>
+<script src="{{asset('web/bundles/fda/script/services/fda.routing-service.js')}}" type="text/javascript"></script>
+
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+<script>
+    var redirectURL='//'+location.host+pathRoute+'/FDA';
+
+    $("#login-submit").click(function(){
+
+            var username = $('#loginname').val();
+            var password = $('#loginpassword').val();
+
+            if(username!=''){
+
+                if(password!==''){
+                    var data = {"username":username,"password":password};
+                    service.operationDataService("userlogin",JSON.stringify(data),function(data){
+                        if(data=="password match"){
+                             window.location = redirectURL+"#/Dashboard";
+                        }
+                        else
+                        {
+                             $("#alert-login-txt").html("Invalid Username or Password");
+                             $("#alert-login-span").show();
+                        }
+                    });
+
+                }
+                else
+                {
+                     $("#alert-login-txt").html("Password is Required");
+                     $("#alert-login-span").show();
+                }
+
+            }
+            else
+            {
+                 $("#alert-login-txt").html("User Name is Required");
+                 $("#alert-login-span").show();
+            }
+
+        });
+</script>
+
+</body>
+
+</html>

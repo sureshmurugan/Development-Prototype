@@ -1,0 +1,15 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+
+# app/config/routing.yml
+homepage:
+    pattern:   /
+    defaults:  { _controller: AppBundle:PageNotFound:redirectToLogin }
+
+pageNotFound:
+    pattern:  /{path}
+    defaults: { _controller: AppBundle:PageNotFound:pageNotFound, path: '' }
+    requirements:
+        path: .*

@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: null
+    database_name: fda
+    database_user: eqdevuser01
+    database_password: EqWins01!
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: ae98264bcc4aa7ded201856b13061a10f2c5465c
