@@ -1,0 +1,9 @@
+$openfda_url = "https://api.fda.gov/drug/event.json?search=serious:$i+AND+receivedate:[".$year_from."0101+TO+".$year_to."1231]&count=patient.drug.openfda.pharm_class_epc.exact";
+	
+	echo $openfda_url."<br/>";
+	$curl_handle  = curl_init( $openfda_url );
+	curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,true);
+	curl_setopt($curl_handle,CURLOPT_SSL_VERIFYPEER,false);  // TO DISABLE HTTPS
+	$curl_result = curl_exec($curl_handle);
+	 ( $i==1 ) ? $array['serious'] = json_decode($curl_result,true) : $array['less_serious'] = json_decode($curl_result,true ) ;
+	curl_close($curl_handle);
