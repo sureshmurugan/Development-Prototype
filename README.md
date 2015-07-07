@@ -1,5 +1,8 @@
 
-URL : http://52.25.235.219/openFDA/
+Development Prototype URL: http://52.25.235.219/openFDA/
+Username: admin 
+Password: admin
+
 
 Technical Approach – Development Prototype
 
