@@ -1,5 +1,3 @@
-# Development-Prototype
-This is an openFDA Development Prototype Repository
 
 URL : http://52.25.235.219/openFDA/
 
